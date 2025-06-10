@@ -1,5 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const ai = new GoogleGenerativeAI("AIzaSyC_lGysfM9jwc3tMtKMYasd4xRKUMG8K5w");
+const ai = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
 const aiMessage = async (message) => {
   try {
     const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
