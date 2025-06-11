@@ -319,6 +319,8 @@ exports.sendMessageToAi = async (req, res, next) => {
       message: reply,
     });
   } catch (error) {
+    console.log(error);
+
     return next(new ErrorThrow(error.message));
   }
 };

@@ -4,6 +4,8 @@ const {
   PutObjectCommand,
   DeleteObjectCommand,
 } = require("@aws-sdk/client-s3");
+const dotenv = require("dotenv");
+dotenv.config({ path: "config/.env" });
 const ErrorThrow = require("../utils/ErrorThrow");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 const Client = new S3Client({
