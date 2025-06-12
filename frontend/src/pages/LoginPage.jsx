@@ -5,18 +5,13 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import {
-  handleLoginAPI,
-  handleToClearErrorAndSucces,
-} from "../slices/UserSlice";
+import { handleLoginAPI } from "../slices/UserSlice";
 import LoaderCompo from "../components/LoaderCompo";
 function LoginPage() {
   const Dispatch = useDispatch();
   const Navigate = useNavigate();
-  const { isAuthenticared, error, success, isLoading, success_message } =
-    useSelector((state) => state.User);
+  const { isAuthenticared, isLoading } = useSelector((state) => state.User);
   const [ishiddenPassword, setIshiddenPassword] = useState(false);
   const resetScroll = () => {
     setTimeout(() => {

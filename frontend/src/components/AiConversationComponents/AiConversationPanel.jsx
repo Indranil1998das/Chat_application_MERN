@@ -1,4 +1,3 @@
-import React from "react";
 import HeaderOfAiConversation from "./HeaderOfAiConversation";
 import AiMessageWrite from "./AiMessageWrite";
 import AiMessages from "./AiMessages";

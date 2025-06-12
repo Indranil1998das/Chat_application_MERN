@@ -260,7 +260,8 @@ exports.changeUserProfile = async (req, res, next) => {
 //Forgot password
 exports.forgotPassWord = async (req, res, next) => {
   try {
-    const data = await userModel.findById(req.id);
+    const { userEmail } = req.params;
+    const data = await userModel.findOne({ userEmail: userEmail });
     if (!data) {
       return next(new ErrorThrow("User is not axist in database"));
     }
@@ -269,10 +270,10 @@ exports.forgotPassWord = async (req, res, next) => {
     data.resetPasswordToken = resetToken;
     data.resetPasswordExpire = Date.now() + 30 * 60 * 1000;
     await data.save();
-    const resetURL = `http://localhost:5000/api/v1/user/reset/${token}`;
+    const resetURL = ` http://localhost:5173/reset/password/${token}`;
     const message = `If you want to change your old password then go with below url:---- \n\n${resetURL}`;
     try {
-      SendEmail(data.userEmail, message);
+      await SendEmail(data.userEmail, message);
       res.status(200).json({
         success: true,
         message: "send a message in your gmail account",

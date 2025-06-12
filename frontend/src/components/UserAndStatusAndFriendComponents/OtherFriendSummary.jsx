@@ -1,4 +1,3 @@
-import React from "react";
 import { IoMdPersonAdd } from "react-icons/io";
 import { RiUserUnfollowLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
@@ -14,11 +13,8 @@ function OtherFriendSummary({
   const { basicFriendList } = useSelector((state) => state.Friends);
   const { incomingRequests } = useSelector((state) => state.Requests);
   return (
-    <div
-      className="text-lg m-2 flex items-center  justify-between p-2  cursor-pointer hover:bg-green-400/10  rounded-md duration-500 shadow-xl"
-      onClick={() => handleToOtherUserInfoOpen(data)}
-    >
-      <div>
+    <div className="text-lg m-2 flex items-center  justify-between p-2  cursor-pointer hover:bg-green-400/10  rounded-md duration-500 shadow-xl">
+      <div onClick={() => handleToOtherUserInfoOpen(data)}>
         <div>
           <img
             src={data.profilePhoto.url}

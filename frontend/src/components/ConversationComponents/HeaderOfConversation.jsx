@@ -84,7 +84,7 @@ function HeaderOfConversation({
   }, [lastBlockedUserId, lastUnblockedUserId]);
 
   return (
-    <div className="w-full p-6 flex justify-between items-center   bg-white z-50">
+    <div className="w-full p-6 flex justify-between items-center relative bg-white z-50">
       <div className="flex space-x-4 items-center ">
         <button
           className=" p-1 text-2xl cursor-pointer"

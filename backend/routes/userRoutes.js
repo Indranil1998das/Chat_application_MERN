@@ -33,8 +33,8 @@ router.route("/logout").put(isAuthenticated, logout);
 router.route("/logged/user").get(getLoggedUser);
 router.route("/password/change").put(isAuthenticated, changePassword);
 router.route("/profile/photo/change").put(isAuthenticated, changeUserProfile);
-router.route("/password/forgot").get(isAuthenticated, forgotPassWord);
-router.route("/reset/:token").put(resetPassword);
+router.route("/password/forgot/:userEmail").get(forgotPassWord);
+router.route("/reset-password/:token").put(resetPassword);
 router
   .route("/block/user/add/:block_userId")
   .post(isAuthenticated, blockListadd);

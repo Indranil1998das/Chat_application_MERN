@@ -119,12 +119,13 @@ exports.getConverstionList = async (req, res, next) => {
       if (
         blockInfo.some((i) => i.userId.toString() === userInfo._id.toString())
       ) {
+        const url = await getObjectURLfromS3("default-image.png");
         userInfo = {
           _id: userInfo._id,
           fullName: userInfo.fullName,
           userEmail: userInfo.userEmail,
           profilePhoto: {
-            url: "https://toppng.com/uploads/preview/no-face-png-11553956848iisebhwzhq.png",
+            url: url,
           },
           gender: userInfo.gender,
           createdAt: userInfo.createdAt,
@@ -209,12 +210,13 @@ exports.findConverstion = async (req, res, next) => {
             });
           }
         } else {
+          const url = await getObjectURLfromS3("default-image.png");
           participantInfo = {
             _id: participantInfo._id,
             fullName: participantInfo.fullName,
             userEmail: participantInfo.userEmail,
             profilePhoto: {
-              url: "https://toppng.com/uploads/preview/no-face-png-11553956848iisebhwzhq.png",
+              url: url,
             },
             gender: participantInfo.gender,
             createdAt: participantInfo.createdAt,

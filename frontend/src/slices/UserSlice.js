@@ -148,6 +148,45 @@ export const handleChangeProfilePhotoAPI = createAsyncThunk(
   }
 );
 
+export const handleToForgetPasswordAPI = createAsyncThunk(
+  "FORGET_PASSWORD",
+  async (args, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(`/api/v1/password/forgot/${args}`);
+      console.log(args);
+      console.log(data);
+
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const handleToResetPasswordAPI = createAsyncThunk(
+  "RESET_PASSWORD",
+  async (args, { rejectWithValue }) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.put(
+        `/api/v1/reset-password/${args.token}`,
+        {
+          newPassword: args.newPassword,
+          confirmPassword: args.confirmPassword,
+        },
+        config
+      );
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "USER",
   initialState,
@@ -236,6 +275,30 @@ const userSlice = createSlice({
       .addCase(handleChangeProfilePhotoAPI.rejected, (state, action) => {
         state.isLoading = false;
         state.success = false;
+        state.error = action.payload;
+      })
+      .addCase(handleToForgetPasswordAPI.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(handleToForgetPasswordAPI.fulfilled, (state, action) => {
+        state.success = true;
+        state.isLoading = false;
+        state.success_message = action.payload.message;
+      })
+      .addCase(handleToForgetPasswordAPI.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(handleToResetPasswordAPI.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(handleToResetPasswordAPI.fulfilled, (state, action) => {
+        state.success = true;
+        state.isLoading = false;
+        state.success_message = action.payload.message;
+      })
+      .addCase(handleToResetPasswordAPI.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
       });
   },

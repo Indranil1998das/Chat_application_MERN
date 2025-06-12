@@ -1,4 +1,3 @@
-import React from "react";
 import { IoMdFemale } from "react-icons/io";
 import { IoMdMale } from "react-icons/io";
 import { IoIosCloseCircleOutline } from "react-icons/io";

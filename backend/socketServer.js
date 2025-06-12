@@ -233,13 +233,14 @@ io.on("connection", (socket) => {
       .findById(data.userId)
       .select("+friendList");
     if (recentBlockUserInfo.socketId) {
+      const url = await getObjectURLfromS3("default-image.png");
       io.to(recentBlockUserInfo.socketId).emit("recentlyBlockYou", {
         _id: userInfo._id,
         fullName: userInfo.fullName,
         userEmail: userInfo.userEmail,
         gender: userInfo.gender,
         profilePhoto: {
-          url: null,
+          url: url,
         },
         createdAt: userInfo.createdAt,
         updatedAt: userInfo.updatedAt,
@@ -299,7 +300,23 @@ io.on("connection", (socket) => {
     const recentUnBlockUserInfo = await userModel.findById(
       data.lastUnblockedUserId
     );
-    const userInfo = await userModel.findById(data.userId).select("-socketId");
+    let userInfo = await userModel.findById(data.userId).select("-socketId");
+    const url = await getObjectURLfromS3(userInfo.profilePhotoKey);
+    if (!url) {
+      userInfo = {
+        ...userInfo._doc,
+        profilePhoto: {
+          url: `https://avatar.iran.liara.run/public/${userInfo.profilePhotoKey}`,
+        },
+      };
+    } else {
+      userInfo = {
+        ...userInfo._doc,
+        profilePhoto: {
+          url: url,
+        },
+      };
+    }
     if (recentUnBlockUserInfo.socketId) {
       io.to(recentUnBlockUserInfo.socketId).emit(
         "recentlyUnBlockYou",
