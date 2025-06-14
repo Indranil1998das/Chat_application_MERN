@@ -8,9 +8,9 @@ const databaseConnection = require("./config/database");
 const { socketServer } = require("./socketServer");
 dotenv.config({ path: "config/.env" });
 // Server Start In this Point
-socketServer.listen(process.env.PORT, () => {
+socketServer.listen(4500, () => {
   databaseConnection();
-  console.log(`SERVER IS RUNNING ON ${process.env.PORT}`);
+  console.log(`SERVER IS RUNNING ON 4500 PORT`);
 });
 
 // UnhandledRejection detection
