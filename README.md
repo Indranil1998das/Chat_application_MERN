@@ -10,7 +10,7 @@ A full-stack real-time chat application with user authentication, friend request
 - **Profile Management**: Change profile photo, update password, and view user details.
 - **Friend System**: Send/cancel/accept/reject friend requests, unfriend, block/unblock users, and search for users.
 - **Conversations & Messaging**:
-  - Real-time messaging and file sharing (images/videos) with encryption.
+  - Real-time messaging and file sharing (images/videos).
   - AI-powered chat (optional).
   - Message history, last message preview, and notifications.
 - **Online Presence**: See which friends are online, and get notified when friends come online/offline.
