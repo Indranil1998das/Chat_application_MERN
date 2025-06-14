@@ -11,6 +11,12 @@ app.use(ex.json({ limit: "50mb" }));
 app.use(cookieParsar());
 app.use(fileUpload());
 app.use("/api/v1", userRoutes, messageRoutes);
+app.use("/", (req, res) => {
+  res.send({
+    Error: false,
+    activeStatus: true,
+  });
+});
 app.use("*", (req, res, next) => {
   return next(
     new ErrorThrow(`Can't found ${req.originalUrl} on our server`, 400)
