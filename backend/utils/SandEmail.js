@@ -4,13 +4,13 @@ const SendEmail = async (userEmail, message) => {
   const transporter = nodeMiler.createTransport({
     service: process.env.SENDEMAIL_SERVICE,
     auth: {
-      user: process.env.SENDEMAIL_COMPANY_GAMIL_ID,
-      pass: process.env.SENDEMAIL_COMPANY_GAMIL_PASS,
+      user: process.env.SENDEMAIL_COMPANY_GMAIL_ID,
+      pass: process.env.SENDEMAIL_COMPANY_GMAIL_PASS,
     },
   });
 
   await transporter.sendMail({
-    from: process.env.SENDEMAIL_COMPANY_GAMIL_ID,
+    from: process.env.SENDEMAIL_COMPANY_GMAIL_ID,
     to: userEmail,
     subject: "Password Recover",
     text: message,
